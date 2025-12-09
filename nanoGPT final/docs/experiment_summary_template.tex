@@ -1,0 +1,40 @@
+\subsection{Experimental Setup}
+\begin{itemize}
+    \item Model: block\_size=\_\_\_, $n_\text{layer}$=\_\_\_, $n_\text{head}$=\_\_\_, $n_\text{headgroup}$=\_\_\_, $d_\text{model}$=\_\_\_, dropout=\_\_\_
+    \item Attention: grouped-query attention enabled? \_\_\_
+    \item Training: batch\_size=\_\_\_, max\_iters=\_\_\_, dataset=\_\_\_, device=\_\_\_
+    \item Optimizer: \{AdamW, Adam + $L_2$\}, learning rate=\_\_\_, schedule=\{constant, step, cosine\}, warm restarts=\_\_\_, weight decay=\_\_\_, $L_2$ coefficient=\_\_\_
+\end{itemize}
+
+\subsection{Final Losses}
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Run & Train loss & Val loss & Notes \\
+\midrule
+\_\_\_ & \_\_\_ & \_\_\_ & \_\_\_ \\
+\_\_\_ & \_\_\_ & \_\_\_ & \_\_\_ \\
+\bottomrule
+\end{tabular}
+\caption{Final losses across optimizer and scheduler variants.}
+\end{table}
+
+\subsection{Curves}
+\begin{itemize}
+    \item Train/Val loss: \texttt{loss\_train.png}, \texttt{loss\_val.png}
+    \item Parameter norms: \texttt{param\_norm.png}
+    \item Gradient norms: \texttt{grad\_norm.png}
+    \item Learning rates: \texttt{lr\_schedules.png}
+\end{itemize}
+
+\subsection{Samples}
+Attach representative samples from each run (e.g., \texttt{out/run\_name/sample.txt}).
+
+\subsection{Results and Discussion}
+\begin{itemize}
+    \item AdamW vs Adam+$L_2$ on loss:
+    \item Parameter norm behavior:
+    \item Effect of cosine schedule and warm restarts:
+    \item Interaction with grouped-query attention:
+\end{itemize}

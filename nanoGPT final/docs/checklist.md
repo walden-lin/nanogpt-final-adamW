@@ -1,0 +1,17 @@
+# Quick correctness checklist
+- Optimizer mode
+  - `optim_mode=adamw` -> decoupled weight decay via `torch.optim.AdamW` with selective decay groups.
+  - `optim_mode=adam_l2` -> `torch.optim.Adam` with zero weight decay; manual $L_2$ term added to the loss each step.
+- Schedulers
+  - `lr_schedule=constant` -> no scheduler (except optional warmup).
+  - `step` -> `MultiStepLR` milestones parsed from `--step_lr_milestones`.
+  - `cosine` -> `CosineAnnealingLR`; `warm_restarts=true` switches to `CosineAnnealingWarmRestarts`.
+  - Warm restarts require `lr_schedule=cosine`.
+- Logging
+  - `out/<run_name>/logs.txt` contains JSON lines for train/val with loss, lr, param/grad norms, optimizer/schedule config.
+- GQA
+  - `n_headgroup>1` uses the GQA attention class; all parameters participate in optimizers and L2 terms.
+- Checkpoints
+  - Saved to `out/<run_name>/ckpt.pt` with optimizer and scheduler states; resumes restore both.
+- Sampling
+  - `sample.py --run_dir out/<run_name>` loads checkpoint and writes samples to `sample.txt` in the same folder.
